@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head >
+    <title>Skillhunt - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/open-iconic-bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" th:href="@{/asses/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/aos.css}">
+    <link rel="stylesheet" th:href="@{/css/ionicons.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery.timepicker.css}">
+    <link rel="stylesheet" th:href="@{/css/css/bootstrap-reboot.css}">
+    <link rel="stylesheet" th:href="@{/css/css/mixins/_text-hide.css}">
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}">
+    <link rel="stylesheet" th:href="@{/css/icomoon.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap-grid.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap-reboot.css}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,400,0,0&icon_names=favorite" />
+
+
+    <!-- JS -->
+    <script th:href="@{/js/jquery.min.js}"></script>
+    <script th:href="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+    <script th:href="@{/js/popper.min.js}"></script>
+    <script th:href="@{/js/bootstrap.min.js}"></script>
+    <script th:href="@{/js/jquery.easing.1.3.js}"></script>
+    <script th:href="@{/js/jquery.waypoints.min.js}"></script>
+    <script th:href="@{/js/jquery.stellar.min.js}"></script>
+    <script th:href="@{/js/owl.carousel.min.js}"></script>
+    <script th:href="@{/js/jquery.magnific-popup.min.js}"></script>
+    <script th:href="@{/js/aos.js}"></script>
+    <script th:href="@{/js/jquery.animateNumber.min.js}"></script>
+    <script th:href="@{/js/scrollax.min.js}"></script>
+    <script th:href="@{/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false}"></script>
+    <script th:href="@{/js/google-map.js}"></script>
+    <script th:href="@{/js/main.js}"></script>
+    <script th:href="@{/https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js}"></script>
+    <script th:href="@{/https://unpkg.com/sweetalert/dist/sweetalert.min.js}"></script>
+
+    <!-- Bootstrap & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div>
+    <nav class="bg-white shadow-sm p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo / Trang chủ -->
+            <a class="text-xl font-bold text-blue-600" href="/home">Trang chủ</a>
+
+            <!-- Nút Toggle cho mobile -->
+            <button class="lg:hidden text-gray-600 focus:outline-none" id="menu-toggle">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+
+            <!-- Menu chính -->
+            <div class="hidden lg:flex space-x-6 items-center" id="navbar-menu">
+                <a class="text-gray-700 hover:text-blue-500" href="/post/list">Danh sách bài đăng</a>
+                <th:block sec:authorize="hasRole('applicant')">
+                    <a class="text-gray-700 hover:text-blue-500" href="/cv/list-post-applied">Danh sách công việc đã apply</a>
+                    <a class="text-gray-700 hover:text-blue-500" href="/post/postFollowed">Followed Post</a>
+                    <a class="text-gray-700 hover:text-blue-500" href="/post/companyFollowed">Followed Company</a>
+
+                </th:block>
+                <th:block sec:authorize="hasRole('recruiter')">
+                    <a href="/post/showFormForAdd" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Đăng bài</a>
+                    <a href="/cv/list" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Duyệt CV</a>
+                </th:block>
+
+                <!-- Hiển thị nếu chưa đăng nhập -->
+                <th:block th:if="${#authorization.expression('isAnonymous()')}">
+                    <a class="px-4 py-2 border border-blue-500 text-blue-500 rounded hover:bg-blue-500 hover:text-white transition" href="/user/login">Đăng nhập</a>
+                    <a class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition" href="/user/form-register">Đăng ký</a>
+                </th:block>
+
+                <!-- Hiển thị nếu đã đăng nhập -->
+                <th:block th:if="${#authorization.expression('isAuthenticated()')}">
+                    <a class="text-gray-700 hover:text-blue-500" href="/user/profile">Hồ sơ</a>
+                    <form th:action="@{/logout}" method="post">
+                        <button class="text-red-500 hover:text-red-600" type="submit">Đăng xuất</button>
+                    </form>
+                </th:block>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- END nav -->
+
+<!-- thông báo khi follow thành công -->
+<div th:if="${followSuccess}" ...>
+    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+        <div class="toast show bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="toast-header bg-success text-white">
+                <strong class="me-auto">Thông báo</strong>
+                <small>Vừa xong</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Bạn đã follow thành công!
+            </div>
+        </div>
+    </div>
+
+</div>
+<!---- thông bao khi unfollow thành công --->
+<div th:if="${unfollowSuccess}" ...>
+    <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-center align-items-center w-100">
+        <div class="toast show bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+            <div class="toast-header bg-success text-white">
+                <strong class="me-auto">Thông báo</strong>
+                <small>Vừa xong</small>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Bạn đã unfollow thành công!
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--- ---------------------->
+<div class="hero-wrap hero-wrap-2" style="background-image: url('/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-start">
+            <div class="col-md-12 text-center mb-5">
+                <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Trang chủ <i class="ion-ios-arrow-forward"></i></a></span>Chi tiết <span></span></p>
+                <h1 class="mb-3 bread">Chi tiết công việc</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section style="margin-top: 10px" class="site-section">
+    <div class="container">
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center">
+                    <div class="border p-2 d-inline-block mr-3 rounded">
+                        <img width="100" height="100" th:src="${'/image/'+post.company.logo}" alt="Image">
+                    </div>
+                    <div>
+                        <h2><a th:text="${post.company.name}" th:href="@{/post/postOfCompany(companyId=${post.company.id})}" ></a></h2>
+
+                         <div sec:authorize="isAnonymous()">
+                        <a class="btn btn-block btn-light btn-md" th:href="@{/user/login}">
+
+                            <span class="icon-heart-o mr-2 text-danger"></span>Lưu công ty</a>
+
+                        </div>
+                        <div  sec:authorize="hasRole('applicant')" >
+
+                            <a th:href="@{/post/addCompanyFollow(companyId=${post.company.id})}" class="btn btn-block btn-light btn-md"><span class="icon-heart-o mr-2 text-danger"></span>Lưu công ty</a>
+
+                        </div>
+                        <input type="hidden">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-6" sec:authorize="isAnonymous()">
+                        <a class="btn btn-block btn-light btn-md" th:href="@{/user/login}">
+
+                            <span class="icon-heart-o mr-2 text-danger"></span>Lưu post</a>
+
+                    </div>
+                    <div class="col-6" sec:authorize="isAnonymous()">
+                        <a
+                           th:href="@{/user/login}"
+
+                           class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm">
+                            Apply
+                        </a>
+
+                    </div>
+                    <div class="col-6" sec:authorize="hasRole('applicant')">
+                        <a class="btn btn-block btn-light btn-md" th:href="@{/post/addPostFollow(postId=${post.id})}">
+
+                            <span class="icon-heart-o mr-2 text-danger"></span>Lưu post</a>
+
+                    </div>
+                    <div class="col-6" sec:authorize="hasRole('applicant')">
+                        <a th:if="${!appliedPost.contains(post)}"
+                           th:href="@{/post/applyJob(postId=${post.id})}"
+                           onclick="return confirm('Bạn có muốn apply công việc này?')"
+                           class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition text-sm">
+                            Apply
+                        </a>
+                        <span th:if="${appliedPost.contains(post)}"
+                              class="bg-gray-400 text-white px-4 py-2 rounded-lg text-sm cursor-not-allowed">
+                        Applied
+                    </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="mb-5">
+                    <h2 ><strong th:text="${post.title}"></strong></h2>
+                    <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Mô tả công việc</h3>
+                    <p th:text="${post.description}"></p>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="bg-light p-3 border rounded mb-4">
+                    <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Tóm tắt công việc</h3>
+                    <ul class="list-unstyled pl-3 mb-0">
+                       <li class="mb-2"> <strong class="text-black">Ngày tạo: </strong> <span th:text="${post.createAt}"></span> </li>
+                        <li class="mb-2"><strong class="text-black">Kiểu công việc: </strong> <span th:text="${post.jobType}"></span></li>
+                        <li class="mb-2"><strong class="text-black">Kinh nghiệm: </strong> <span th:text="${post.experience}"> </span></li>
+                        <li class="mb-2"><strong class="text-black">Địa chỉ: </strong> <span th:text="${post.address}"></span></li>
+                        <li class="mb-2"><strong class="text-black">Lương: </strong> <span th:text="${post.salary}"> </span></li>
+                        <li class="mb-2"><strong class="text-black">Số lượng: </strong><span th:text="${post.vacancies}"></span></li>
+                        <li class="mb-2"><strong class="text-black">Hạn nộp cv: </strong><span th:text="${post.deadline}"></span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-light p-3 border rounded">
+                    <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
+                    <div class="px-3">
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+</footer>
+</body>
+</html>

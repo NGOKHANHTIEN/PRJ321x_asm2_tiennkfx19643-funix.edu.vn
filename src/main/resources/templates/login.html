@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .error{
+        color:red
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold mb-4">Đăng Nhập</h2>
+
+    <form th:action="@{/authenticateTheUser}" method="post">
+
+
+
+        <div th:if="${param.error}" class="error">
+
+            <i>Sorry! You entered invalid username/password.</i>
+        </div>
+
+        <label class="block font-medium mb-2">Email</label>
+        <input type="text" name="username" class="w-full border p-2 rounded-md mb-4">
+
+
+
+        <label class="block font-medium mb-2">Password</label>
+        <input type="text" name="password" class="w-full border p-2 rounded-md mb-4">
+
+
+        <!-- Nút cập nhật -->
+        <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md w-full">Đăng Nhập</button>
+    </form>
+</div>
+</body>
+</html>

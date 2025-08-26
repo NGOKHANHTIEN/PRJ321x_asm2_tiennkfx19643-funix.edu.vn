@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold mb-4">Đăng ký</h2>
+
+    <form th:action="@{/user/register}" th:object="${user}" method="post">
+
+
+
+        <label class="block font-medium mb-2">Họ và tên</label>
+        <input type="text" th:field="*{name}" class="w-full border p-2 rounded-md mb-4">
+
+        <label class="block font-medium mb-2">Điạ chỉ</label>
+        <input type="text" th:field="*{address}" class="w-full border p-2 rounded-md mb-4">
+
+
+        <label class="block font-medium mb-2">Email</label>
+        <input type="text" th:field="*{email}" class="w-full border p-2 rounded-md mb-4">
+
+        <label class="block font-medium mb-2">SĐT</label>
+        <input type="text" th:field="*{phoneNum}" class="w-full border p-2 rounded-md mb-4">
+
+
+        <label class="block font-medium mb-2">Password</label>
+        <input type="text" th:field="*{password}" class="w-full border p-2 rounded-md mb-4">
+
+        <label class="block font-medium mb-2">Nhập lại password</label>
+        <input type="text" name="rePassword" class="w-full border p-2 rounded-md mb-4">
+
+
+        <label class="block font-medium mb-2">Vai trò</label>
+        <select th:field="*{roleId}" class="w-full border p-2 rounded-md mb-4">
+            <option value=1>Ứng viên</option>
+            <option value=2>Nhà tuyển dụng</option>
+        </select>
+
+        <!-- Nút cập nhật -->
+        <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md w-full">Đăng ký</button>
+    </form>
+</div>
+</body>
+</html>

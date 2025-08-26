@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cập nhật bài đăng</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body class="bg-gray-100 p-8">
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h2 class="text-2xl font-semibold mb-4">Chi tiết bài tuyển dụng</h2>
+
+    <form th:action="@{/post/save}" th:object="${post}" method="post" class="container p-4 border rounded shadow bg-white">
+        <input type="hidden" th:field="*{id}">
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Tiêu đề</label>
+            <input type="text" th:field="*{title}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Mô tả công việc</label>
+            <textarea th:field="*{description}" class="form-control" rows="4"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Kinh nghiệm</label>
+            <input type="text" th:field="*{experience}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Số người cần tuyển</label>
+            <input type="number" th:field="*{vacancies}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Địa chỉ</label>
+            <input type="text" th:field="*{address}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Hạn ứng tuyển</label>
+            <input type="date" th:field="*{deadline}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Lương</label>
+            <input type="text" th:field="*{salary}" class="form-control">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Loại công việc</label>
+            <select th:field="*{jobType}" class="form-select">
+                <option value="fulltime">Full time</option>
+                <option value="parttime">Part time</option>
+                <option value="freelancer">Freelancer</option>
+            </select>
+        </div>
+
+
+        <input type="hidden" th:field="*{createAt}">
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Công ty</label>
+            <p class="form-control-plaintext" th:text="${company.name}"></p>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label fw-bold">Categories</label>
+            <select class="selectpicker" multiple name="categoryIdList">
+                <option th:each="category : ${categoriesList}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+    </form>
+
+</div>
+</body>
+</html>
